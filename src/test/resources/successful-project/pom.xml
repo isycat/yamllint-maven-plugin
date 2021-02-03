@@ -13,10 +13,11 @@
     <build>
         <plugins>
             <plugin>
-                <artifactId>maven-my-plugin</artifactId>
+                <groupId>com.isycat</groupId>
+                <artifactId>yamllint-maven-plugin</artifactId>
                 <configuration>
                     <!-- Specify parameter -->
-                    <sourceDir>target/test-harness/project-to-test</sourceDir>
+                    <sourceDir>.</sourceDir>
                 </configuration>
             </plugin>
         </plugins>

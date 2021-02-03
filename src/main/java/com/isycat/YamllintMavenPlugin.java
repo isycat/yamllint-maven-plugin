@@ -58,7 +58,7 @@ public class YamllintMavenPlugin
         // handle config ---
         if (!sourceDir.exists()) {
             throw new YamlLintException(
-                    "sourceDir file not found",
+                    "sourceDir not found: " + sourceDir.getAbsolutePath(),
                     new FileNotFoundException(sourceDir.getAbsolutePath())
             );
         }
