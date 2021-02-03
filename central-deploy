@@ -1,0 +1,2 @@
+mw -s .settings.xml -Possrh clean deploy
+
