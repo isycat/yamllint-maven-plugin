@@ -1,7 +1,9 @@
 # yamllint-maven-plugin
 yamllint provided as a maven plugin using com.github.sbaudoin:yamllint
 
-#Usage
+## Usage 
+
+```xml
     <plugin>
         <groupId>com.isycat</groupId>
         <artifactId>yamllint-maven-plugin</artifactId>
@@ -19,7 +21,7 @@ yamllint provided as a maven plugin using com.github.sbaudoin:yamllint
             </execution>
         </executions>
     </plugin>
+```
 
-
-#Configuration
+## Configuration
 For linter configuration please refer to https://github.com/sbaudoin/yamllint#configuration
