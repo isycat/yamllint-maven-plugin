@@ -1,0 +1,25 @@
+name: Publish yamllint-maven-plugin
+
+on:
+  push:
+    tags:
+      - 'release-[0-9]+\.[0-9]+\.[0-9][0-9A-Za-z]*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to publish (e.g. 1.0.0)'
+        required: true
+        type: string
+      commit:
+        description: 'Commit SHA to publish from (optional, defaults to main)'
+        required: false
+        type: string
+
+jobs:
+  publish:
+    uses: isycat/maven-central-publisher/.github/workflows/publish.yml@main
+    with:
+      module: yamllint-maven-plugin
+      version: ${{ github.event_name == 'workflow_dispatch' && inputs.version || github.ref_name }}
+      ref: ${{ github.event_name == 'workflow_dispatch' && (inputs.commit || 'main') || github.ref_name }}
+    secrets: inherit
