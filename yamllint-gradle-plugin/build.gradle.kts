@@ -36,8 +36,3 @@ gradlePlugin {
         }
     }
 }
-
-tasks.withType<org.gradle.api.publish.maven.tasks.PublishToMavenRepository>().configureEach {
-    val signingTasks = tasks.withType<org.gradle.plugins.signing.Sign>()
-    dependsOn(signingTasks)
-}
