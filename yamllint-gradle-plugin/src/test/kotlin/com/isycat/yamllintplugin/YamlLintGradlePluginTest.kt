@@ -139,4 +139,25 @@ class YamlLintGradlePluginTest {
 
         assertEquals(TaskOutcome.SUCCESS, result.task(":yamllint")?.outcome)
     }
+
+    @Test
+    fun `test wiring to check task`() {
+        projectDir.resolve("test.yaml").writeText(
+            """
+            ---
+            key: value
+            ...
+            """.trimIndent(),
+        )
+
+        val result =
+            GradleRunner
+                .create()
+                .withProjectDir(projectDir)
+                .withArguments("check")
+                .withPluginClasspath()
+                .build()
+
+        assertEquals(TaskOutcome.SUCCESS, result.task(":yamllint")?.outcome)
+    }
 }

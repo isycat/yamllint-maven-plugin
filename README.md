@@ -19,6 +19,8 @@ yamllint {
 
 By default, `sourceDir` is set to the project directory and `configFile` defaults to `.yamllint` in the project root.
 
+The `yamllint` task is automatically added to the Gradle `check` lifecycle, so it will run when you execute `./gradlew check`.
+
 ### Running the Linter
 
 Run the following command:

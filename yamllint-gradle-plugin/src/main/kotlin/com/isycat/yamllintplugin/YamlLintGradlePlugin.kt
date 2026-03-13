@@ -9,9 +9,13 @@ class YamlLintGradlePlugin : Plugin<Project> {
         extension.sourceDir.convention(project.layout.projectDirectory)
         extension.configFile.convention(project.layout.projectDirectory.file(".yamllint"))
 
-        project.tasks.register("yamllint", YamlLintTask::class.java) {
+        val yamllintTask = project.tasks.register("yamllint", YamlLintTask::class.java) {
             it.sourceDir.set(extension.sourceDir)
             it.configFile.set(extension.configFile)
+        }
+
+        project.tasks.matching { it.name == "check" }.all {
+            it.dependsOn(yamllintTask)
         }
     }
 }
