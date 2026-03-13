@@ -3,7 +3,10 @@ name: Publish yamllint-gradle-plugin
 on:
   push:
     tags:
-      - 'release-[0-9]+\.[0-9]+\.[0-9][0-9A-Za-z]*'
+      - 'release-[0-9]+.[0-9]+.[0-9]+'
+      - 'release-[0-9]+.[0-9]+.[0-9]+[0-9A-Za-z]+'
+      - 'release-[0-9]+.[0-9]+.[0-9]+-SNAPSHOT'
+      - 'release-[0-9]+.[0-9]+.[0-9]+[0-9A-Za-z]+-SNAPSHOT'
   workflow_dispatch:
     inputs:
       version:
@@ -11,13 +14,13 @@ on:
         required: true
         type: string
       commit:
-        description: 'Commit SHA to publish from (optional, defaults to main)'
+        description: 'Commit SHA to publish from (optional, defaults to HEAD of main)'
         required: false
         type: string
 
 jobs:
   publish:
-    uses: isycat/maven-central-publisher/.github/workflows/publish.yml@main
+    uses: isycat/maven-central-publisher/.github/workflows/publish.yml@v1
     with:
       module: yamllint-gradle-plugin
       version: ${{ github.event_name == 'workflow_dispatch' && inputs.version || github.ref_name }}
