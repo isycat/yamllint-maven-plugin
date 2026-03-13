@@ -13,7 +13,7 @@ mavenCentralPublishing {
     developerId = "isycat"
     license {
         name = "Apache-2.0"
-        url = "https://github.com/isycat/yamllint-maven-plugin"
+        url = "https://github.com/isycat/yamllint-maven-plugin/blob/main/yamllint-maven-plugin/LICENSE"
     }
 }
 

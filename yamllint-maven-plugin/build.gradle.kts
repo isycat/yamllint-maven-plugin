@@ -13,7 +13,7 @@ mavenCentralPublishing {
     developerId = "isycat"
     license {
         name = "MIT"
-        url = "https://github.com/isycat/yamllint-maven-plugin"
+        url = "https://github.com/isycat/yamllint-maven-plugin/blob/main/yamllint-gradle-plugin/LICENSE"
     }
 }
 
