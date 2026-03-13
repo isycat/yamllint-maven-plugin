@@ -97,4 +97,46 @@ class YamlLintGradlePluginTest {
         assertEquals(TaskOutcome.FAILED, result.task(":yamllint")?.outcome)
         assertTrue(result.output.contains("1 error found while parsing yaml files."))
     }
+
+    @Test
+    fun `test custom configuration`() {
+        val customYamlDir = projectDir.resolve("custom-yaml")
+        customYamlDir.mkdirs()
+        customYamlDir.resolve("test.yaml").writeText(
+            """
+            ---
+            key: value
+            ...
+            """.trimIndent(),
+        )
+
+        val customConfig = projectDir.resolve("custom.yamllint")
+        customConfig.writeText(
+            """
+            extends: default
+            """.trimIndent(),
+        )
+
+        buildFile.writeText(
+            """
+            plugins {
+                id 'com.isycat.yamllint'
+            }
+            yamllint {
+                sourceDir = layout.projectDirectory.dir("custom-yaml")
+                configFile = layout.projectDirectory.file("custom.yamllint")
+            }
+            """.trimIndent(),
+        )
+
+        val result =
+            GradleRunner
+                .create()
+                .withProjectDir(projectDir)
+                .withArguments("yamllint")
+                .withPluginClasspath()
+                .build()
+
+        assertEquals(TaskOutcome.SUCCESS, result.task(":yamllint")?.outcome)
+    }
 }

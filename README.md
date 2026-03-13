@@ -2,32 +2,18 @@
 yamllint provided as a Maven and Gradle plugin using [com.github.sbaudoin:yamllint](https://github.com/sbaudoin/yamllint).
 ## Gradle Usage
 
-### Using the Plugins DSL
+### Configuration
 
-Add the following to your `build.gradle.kts`:
+The plugin registers a `yamllint` task. You can configure it using the `yamllint` extension in your `build.gradle.kts`:
 
 ```kotlin
 plugins {
     id("com.isycat.yamllint") version "1.1.0"
 }
-```
 
-Or for `build.gradle` (Groovy):
-
-```groovy
-plugins {
-    id 'com.isycat.yamllint' version '1.1.0'
-}
-```
-
-### Configuration
-
-The plugin registers a `yamllint` task. You can configure it as follows:
-
-```kotlin
-tasks.withType<com.isycat.yamllint.YamlLintTask> {
-    sourceDir.set(file("path/to/yaml/files"))
-    configFile.set(file(".yamllint"))
+yamllint {
+    sourceDir = layout.projectDirectory.dir("path/to/yaml/files")
+    configFile = layout.projectDirectory.file(".yamllint")
 }
 ```
 
