@@ -5,7 +5,7 @@ plugins {
 
 allprojects {
     group = "com.isycat"
-    version = "1.1.0"
+    version = properties["version"] ?: "0.0.1"
 
     repositories {
         mavenCentral()
